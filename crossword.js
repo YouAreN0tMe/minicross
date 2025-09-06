@@ -10,6 +10,7 @@ for (let i = 0; i < 25; i++) {
   // 🔥 Make the cell clickable
   cell.addEventListener("click", () => {
     activeCell = cell;
+    console.log("Cell clicked:", cell);
   });
 
   grid.appendChild(cell);
@@ -17,6 +18,7 @@ for (let i = 0; i < 25; i++) {
 
 document.addEventListener("keydown", (event) => {
   // Only continue if a cell is selected
+  console.log("Key pressed:", event.key);
   if (!activeCell) return;
 
   const key = event.key;
