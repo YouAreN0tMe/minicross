@@ -7,9 +7,10 @@ for (let i = 0; i < 25; i++) {
   const cell = document.createElement("div");
   cell.className = "grid-cell";
 
-  // 🔥 Make the cell clickable
+  //Makes the cell clickable
   cell.addEventListener("click", () => {
     activeCell = cell;
+    setActiveCell(cell);
     console.log("Cell clicked:", cell);
   });
 
@@ -28,4 +29,12 @@ document.addEventListener("keydown", (event) => {
     activeCell.textContent = key.toUpperCase();
   }
 });
+
+function setActiveCell(cell) {
+  if (activeCell) {
+    activeCell.classList.remove("active");
+  }
+  activeCell = cell;
+  activeCell.classList.add("active");
+}
 
