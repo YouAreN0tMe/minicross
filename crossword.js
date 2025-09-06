@@ -7,6 +7,8 @@ for (let i = 0; i < 25; i++) {
   const cell = document.createElement("div");
   cell.className = "grid-cell";
 
+  cell.dataset.index = i;  // store index in a data attribute
+
   //Makes the cell clickable
   cell.addEventListener("click", () => {
     setActiveCell(cell);
@@ -22,12 +24,35 @@ document.addEventListener("keydown", (event) => {
   if (!activeCell) return;
 
   const key = event.key;
+  
+  const index = parseInt(activeCell.dataset.index);
+  const cols = 5; // grid width
+
+  switch (event.key) {
+    case "ArrowLeft":
+      if (index % cols !== 0) setActiveCell(grid.children[index - 1]);
+      break;
+    case "ArrowRight":
+      if (index % cols !== cols - 1) setActiveCell(grid.children[index + 1]);
+      break;
+    case "ArrowUp":
+      if (index - cols >= 0) setActiveCell(grid.children[index - cols]);
+      break;
+    case "ArrowDown":
+      if (index + cols < grid.children.length) setActiveCell(grid.children[index + cols]);
+      break;
+    default:
+      // If it's a letter key, handle it here (keep your existing letter logic)
+      if (event.key.length === 1 && event.key.match(/[a-z]/i)) {
+        activeCell.textContent = event.key.toUpperCase();
+      }
+      break;
 
   // Only allow A–Z letters
   if (key.length === 1 && key.match(/[a-z]/i)) {
     activeCell.textContent = key.toUpperCase();
   }
-});
+}});
 
 function setActiveCell(cell) {
   if (activeCell) {
