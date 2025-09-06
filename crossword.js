@@ -9,7 +9,6 @@ for (let i = 0; i < 25; i++) {
 
   //Makes the cell clickable
   cell.addEventListener("click", () => {
-    activeCell = cell;
     setActiveCell(cell);
     console.log("Cell clicked:", cell);
   });
