@@ -23,8 +23,6 @@ document.addEventListener("keydown", (event) => {
   console.log("Key pressed:", event.key);
   if (!activeCell) return;
 
-  const key = event.key;
-  
   const index = parseInt(activeCell.dataset.index);
   const cols = 5; // grid width
 
@@ -42,17 +40,13 @@ document.addEventListener("keydown", (event) => {
       if (index + cols < grid.children.length) setActiveCell(grid.children[index + cols]);
       break;
     default:
-      // If it's a letter key, handle it here (keep your existing letter logic)
+      // Only allow A–Z letters
       if (event.key.length === 1 && event.key.match(/[a-z]/i)) {
         activeCell.textContent = event.key.toUpperCase();
       }
       break;
-
-  // Only allow A–Z letters
-  if (key.length === 1 && key.match(/[a-z]/i)) {
-    activeCell.textContent = key.toUpperCase();
   }
-}});
+});
 
 function setActiveCell(cell) {
   if (activeCell) {
